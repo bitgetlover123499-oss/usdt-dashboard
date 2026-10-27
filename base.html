@@ -1,0 +1,13 @@
+<!doctype html><html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USDT Ledger Demo</title><style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#10182d;color:#f4f6fb;font-family:system-ui,Arial,sans-serif}
+main{max-width:760px;margin:auto;padding:20px}.card{background:#1b2540;border:1px solid #2d3957;border-radius:18px;padding:18px;margin:14px 0}
+h1,h2{margin-top:0}input,button{font:inherit;padding:12px;border-radius:10px;border:1px solid #485575;width:100%;margin:5px 0;background:#121b31;color:white}
+button{background:#b9ed38;color:#18213a;border:0;font-weight:700;cursor:pointer}.secondary{background:#36445f;color:white}
+a{color:#b9ed38}.muted{color:#aeb8cc}.flash{background:#34435d;padding:12px;border-radius:10px;margin:8px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.row{border-bottom:1px solid #35415d;padding:12px 0;overflow-wrap:anywhere}
+small{color:#aeb8cc}.pill{font-size:12px;padding:3px 8px;border-radius:9px;background:#35435e}
+</style></head><body><main>
+{% for message in get_flashed_messages() %}<div class="flash">{{ message }}</div>{% endfor %}
+{% block content %}{% endblock %}
+</main></body></html>

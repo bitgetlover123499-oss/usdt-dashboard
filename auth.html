@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h1>USDT Dashboard Demo</h1><p class="muted">শুধু পরীক্ষামূলক লেজার—এটি নিজে থেকে USDT গ্রহণ বা পাঠায় না।</p>
+<form method="post">
+<label>ইউজারনেম</label><input name="username" minlength="3" maxlength="40" required autocomplete="username">
+<label>পাসওয়ার্ড (কমপক্ষে ১২ অক্ষর)</label><input type="password" name="password" minlength="12" required autocomplete="{{ 'new-password' if mode == 'register' else 'current-password' }}">
+<button>{{ 'অ্যাকাউন্ট তৈরি করুন' if mode == 'register' else 'লগইন' }}</button>
+</form>
+<p>{% if mode == 'register' %}আগে অ্যাকাউন্ট আছে? <a href="{{ url_for('login') }}">লগইন</a>{% else %}নতুন? <a href="{{ url_for('register') }}">অ্যাকাউন্ট তৈরি করুন</a>{% endif %}</p></div>
+{% endblock %}

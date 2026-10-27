@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block content %}
+<p><a href="{{ url_for('logout') }}">লগআউট</a> {% if user.is_admin %} · <a href="{{ url_for('admin') }}">অ্যাডমিন</a>{% endif %}</p>
+<div class="card"><small>মোট অনুমোদিত ব্যালেন্স (ডেমো লেজার)</small><h1>{{ "%.6f"|format(balance) }} USDT</h1><p class="muted">এটি বাস্তব wallet balance নয়। কোনো স্বয়ংক্রিয় মুনাফা গণনা করা হয় না।</p></div>
+<div class="grid"><div class="card"><h2>জমার অনুরোধ</h2><form method="post" action="{{ url_for('request_deposit') }}">
+<label>পরিমাণ (USDT)</label><input type="number" name="amount" min="0.000001" step="0.000001" required>
+<label>Transaction ID / TxID</label><input name="reference" maxlength="150" required placeholder="লেনদেনের TxID">
+<button>যাচাইয়ের জন্য জমা দিন</button></form><small>TxID যাচাই না করে কখনো অনুমোদন করবেন না।</small></div>
+<div class="card"><h2>উত্তোলনের অনুরোধ</h2><form method="post" action="{{ url_for('request_withdrawal') }}">
+<label>পরিমাণ (USDT)</label><input type="number" name="amount" min="0.000001" step="0.000001" required>
+<label>গ্রহণকারী wallet address</label><input name="address" maxlength="150" required>
+<button class="secondary">উত্তোলনের অনুরোধ</button></form><small>এই ডেমো অ্যাপ টাকা পাঠায় না।</small></div></div>
+<div class="card"><h2>লেনদেনের ইতিহাস</h2>{% for r in rows %}<div class="row"><b>{{ r.kind|capitalize }}</b> · {{ "%.6f"|format(r.amount) }} USDT<br><span class="pill">{{ r.status }}</span> <small>{{ r.created_at }} · {{ r.reference }}</small></div>{% else %}<p class="muted">এখনো কোনো লেনদেন নেই।</p>{% endfor %}</div>
+{% endblock %}

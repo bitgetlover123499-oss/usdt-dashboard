@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block content %}<p><a href="{{ url_for('dashboard') }}">← ড্যাশবোর্ড</a></p><div class="card"><h1>Pending requests</h1>
+{% for r in rows %}<div class="row"><b>{{ r.kind|capitalize }} · {{ "%.6f"|format(r.amount) }} USDT</b><br>User ID: {{ r.user_id }}<br><small>{{ r.created_at }} · {{ r.reference }}</small>
+<form method="post" action="{{ url_for('admin_decision', row_id=r.id) }}"><button name="decision" value="approve">Approve</button><button class="secondary" name="decision" value="reject">Reject</button></form>
+{% if r.kind == 'deposit' %}<small>Approve করার আগে blockchain explorer-এ TxID, token contract, network, amount ও destination যাচাই করুন।</small>{% else %}<small>Approve করলে শুধু ডেমো ledger আপডেট হয়; টাকা পাঠানো হয় না।</small>{% endif %}</div>{% else %}<p class="muted">কোনো pending request নেই।</p>{% endfor %}</div>{% endblock %}
